@@ -1,14 +1,16 @@
-📘 Posts Fusion Studio – AI Content Generator
+**📘 Posts Fusion Studio – AI Content Generator
+**
 A simple, fully working AI content streaming application built with Node.js and Express.
 Generates mock social media posts with real-time token streaming – no API key required.
 
-🚀 Features
+**🚀 Features
+**
 Real-time streaming – see content appear word‑by‑word using Server‑Sent Events.
 
 Mock content – works out‑of‑the‑box without any API key.
 
-Two modes:
-
+**Two modes:
+**
 Streaming – uses EventSource for live token display.
 
 Full post – fetches the complete post as JSON (fallback if streaming fails).
@@ -17,11 +19,13 @@ Minimal dependencies – only Express.
 
 Single file – everything is in final-app.js.
 
-📦 Prerequisites
-Node.js (v16 or higher) – Download here
+**📦 Prerequisites
+**Node.js (v16 or higher) – Download here
 
-🛠️ Installation & Setup
-Clone or download this repository.
+
+**🛠️ Installation & Setup
+**Clone or download this repository.
+
 
 Open a terminal in the project folder.
 
@@ -179,4 +183,7 @@ All mock content is for educational purposes and demonstrates the core concepts 
 📄 License
 This project is licensed under the MIT License – feel free to use, modify, and distribute it.
 
-Happy building! 🚀
+**Author
+**
+**Sawaira Mumtaz
+**

@@ -1,40 +1,40 @@
-**📘 Posts Fusion Studio – AI Content Generator
-**
-A simple, fully working AI content streaming application built with Node.js and Express.
-Generates mock social media posts with real-time token streaming – no API key required.
+📘 Posts Fusion Studio – AI Content Generator
+🚀 Live Demo: https://posts-fusion-studio.onrender.com
 
-**🚀 Features
-**
-Real-time streaming – see content appear word‑by‑word using Server‑Sent Events.
+A fully functional AI content streaming application built with Node.js and Express.
+It generates mock social media posts with real-time token streaming – no API key required!
 
-Mock content – works out‑of‑the‑box without any API key.
+✨ Features
+Feature	Description
+⚡ Live Streaming	Watch content appear word‑by‑word using Server‑Sent Events
+🎭 Mock Content	Works immediately without any external API key
+🔀 Two Modes	Streaming (EventSource) + Full Post (JSON fetch)
+🧩 Single File	Everything is contained in final-app.js
+🎨 Clean UI	Styled with Tailwind CSS (loaded from CDN)
+📱 Responsive	Works on desktop, tablet, and mobile
+🎯 Live Demo
+Try it now: https://posts-fusion-studio.onrender.com
 
-**Two modes:
-**
-Streaming – uses EventSource for live token display.
+⚠️ Note: The free instance spins down after 15 minutes of inactivity. The first visit may take 30–60 seconds to wake up.
 
-Full post – fetches the complete post as JSON (fallback if streaming fails).
+🛠️ Tech Stack
+Backend: Node.js + Express
 
-Minimal dependencies – only Express.
+Frontend: Vanilla JavaScript + HTML + Tailwind CSS
 
-Single file – everything is in final-app.js.
+Streaming: Server-Sent Events (SSE) / EventSource API
 
-**📦 Prerequisites
-**Node.js (v16 or higher) – Download here
+Deployment: Render (free tier)
 
-
-**🛠️ Installation & Setup
-**Clone or download this repository.
-
-
-Open a terminal in the project folder.
-
-Install Express:
-
+📦 Installation & Setup
+1. Clone the Repository
+bash
+git clone https://github.com/Sawaira-Mumtaz786/AI-Engineering-Internship-Project.git
+cd AI-Engineering-Internship-Project
+2. Install Dependencies
 bash
 npm install express
-Start the server:
-
+3. Start the Server
 bash
 node final-app.js
 You should see:
@@ -42,148 +42,121 @@ You should see:
 text
 ✅ Server running on http://localhost:3000
 🎭 MOCK MODE – No API key needed!
-Open your browser and go to:
-http://localhost:3000
+4. Open Your Browser
+Go to: http://localhost:3000
 
 🧪 How to Use
-Enter a Topic, Niche, and Tone (defaults are provided).
+Enter a Topic – e.g., "AI in Healthcare"
 
-Click:
+Enter a Niche – e.g., "SaaS Founders"
 
-"Generate Post (Streaming)" – watch the content appear token by token.
+Choose a Tone – e.g., "authoritative & actionable"
 
-"Get Full Post (No Streaming)" – instantly displays the complete post.
+Click one of the buttons:
 
-Generated content appears in the box below.
+🟦 "Generate Post (Streaming)" – watch content appear token by token
+
+🟩 "Get Full Post (No Streaming)" – instantly displays the complete post
+
+The generated content will appear in the box below.
+
+📁 Project Structure
+text
+AI-Engineering-Internship-Project/
+├── final-app.js          # Main server file (routing, HTML, endpoints)
+├── package.json          # Dependencies and start script
+├── .gitignore            # Ignore node_modules, .env, etc.
+├── Output1.png           # Screenshot 1
+├── Output2.png           # Screenshot 2
+└── README.md             # This file
+🔧 Extending with a Real AI API
+The app currently uses a mock generator. To connect to a real LLM:
+
+Option 1: OpenAI
+bash
+npm install openai
+Then modify the /api/stream endpoint:
+
+javascript
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const stream = await openai.chat.completions.create({
+  model: 'gpt-3.5-turbo',
+  messages: [{ role: 'user', content: prompt }],
+  stream: true,
+});
+Option 2: OpenRouter (Free)
+javascript
+const openrouter = new OpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: process.env.OPENROUTER_API_KEY,
+});
+const stream = await openrouter.chat.completions.create({
+  model: 'openrouter/free',
+  messages: [{ role: 'user', content: prompt }],
+  stream: true,
+});
+⚠️ Important
+Never hardcode API keys – use environment variables (.env file)
+
+Add .env to .gitignore to prevent accidental commits
+
+Use process.env.YOUR_KEY in your code
 
 🛑 Troubleshooting
 Issue	Solution
 Blank page	Make sure you are visiting http://localhost:3000 (not a file path). Press Ctrl+Shift+R to hard refresh.
-Streaming button does nothing	Try the "Get Full Post (No Streaming)" button – it always works.
-Error Cannot find module 'express'	Run npm install express first.
-Port already in use	Change the PORT variable in final-app.js to another number (e.g., 3001).
-Nothing appears in the content box	Open the browser console (F12) and check for errors. If you see CORS or fetch errors, ensure the server is running on the same host/port.
-🔧 Extending with a Real AI API
-The app currently uses a mock generator. To connect to a real LLM (OpenAI, OpenRouter, etc.):
+Streaming button does nothing	Try the "Get Full Post (No Streaming)" button – it works every time.
+Error: Cannot find module 'express'	Run npm install express first.
+Port 3000 already in use	Change the PORT variable in final-app.js (e.g., to 3001), then restart.
+Nothing appears in content box	Open browser console (F12) and check for red errors. Ensure the server is running.
+Render deployment fails	Make sure package.json has "type": "module" and express in dependencies.
+🚀 Deployment
+The app is deployed on Render (free tier):
 
-Replace the mockPost generation in the /api/stream or /api/generate endpoint with your API call.
+Deploy Your Own Copy
+Push your code to GitHub.
 
-Add your API key to the request headers.
+Go to render.com → New Web Service.
 
-For OpenAI, use the openai package and stream: true in the chat completion.
+Connect your GitHub repository.
 
-For OpenRouter, set baseURL: 'https://openrouter.ai/api/v1' and use model: 'openrouter/free'.
+Fill:
 
-📁 File Structure
-final-app.js – the entire server (routing, HTML, streaming endpoints).
+Build Command: npm install
 
-package.json – optional, used only to manage Express.
+Start Command: npm start
 
-🧑‍💻 Credits
-Built as part of an AI Engineering internship at Posts Fusion / Pro Fusion AI.
-All mock content is educational and demonstrates the core concepts of streaming, prompt engineering, and full‑stack development.
+Click Create Web Service.
 
-📄 License
-MIT – free to use and modify.
+You'll get a URL like https://your-app.onrender.com.
 
-Enjoy building your AI content studio! 🚀
+📸 Screenshots
+(Add your screenshots here)
 
-i want complete copy paste Readme.md
-We need to produce a complete README.md file that the user can copy and paste. The user has a working Node.js app (final-app.js) that serves a single-page HTML with mock streaming. They want a README that explains the project, setup, usage, and troubleshooting. Provide it in a code block for easy copy-paste.
+Streaming Mode	Full Post Mode
+https://Output1.png	https://Output2.png
+👩‍💻 Author
+Sawaira Mumtaz
+AI Engineering Intern at Posts Fusion / Pro Fusion AI
 
-The user's app uses Express and serves an HTML page with two buttons: streaming (EventSource) and full post fetch. We'll write a comprehensive README covering everything.
+ [sawairamumtaz369@gmail.com]
 
-📘 Posts Fusion Studio – AI Content Generator
-A fully functional AI content streaming application built with Node.js and Express.
-It generates mock social media posts with real-time token streaming – no API key required!
+🔗 GitHub  https://github.com/Sawaira-Mumtaz786
 
-✨ Features
-⚡ Live streaming – watch content appear word‑by‑word using Server‑Sent Events.
-
-🎭 Mock content – works immediately without any external API key.
-
-🔀 Two generation modes:
-
-Streaming – uses EventSource to display tokens in real time.
-
-Full post – fetches the complete post as JSON (fallback or instant view).
-
-🧩 Single file – everything is contained in final-app.js.
-
-🎨 Simple, clean UI – styled with Tailwind CSS (loaded from CDN).
-
-📦 Prerequisites
-Node.js (v16 or higher) – Download here
-
-npm (comes with Node)
-
-🛠️ Installation & Setup
-Clone or download this repository to your local machine.
-
-Open a terminal in the project folder.
-
-Install the only dependency – Express:
-
-bash
-npm install express
-Start the server:
-
-bash
-node final-app.js
-You should see output like:
-
-text
-✅ Server running on http://localhost:3000
-🎭 MOCK MODE – No API key needed!
-Open your browser and navigate to:
-👉 http://localhost:3000
-
-🧪 How to Use
-Enter a Topic, Niche, and Tone (the form comes with sensible defaults).
-
-Click one of the two buttons:
-
-"Generate Post (Streaming)" – the content will appear token by token.
-
-"Get Full Post (No Streaming)" – the entire post appears immediately.
-
-The generated text is displayed in the "Generated Content" box below.
-
-🛑 Troubleshooting
-Issue	Solution
-Blank page	Make sure you are visiting http://localhost:3000 (not a file path). Press Ctrl+Shift+R to hard-refresh.
-Streaming button does nothing	Try the "Get Full Post (No Streaming)" button – it works every time. If that also fails, open the browser console (F12) to see errors.
-Error Cannot find module 'express'	Run npm install express first.
-Port 3000 already in use	Change the PORT variable in final-app.js to another number (e.g., 3001), then restart the server.
-Nothing appears in the content box	Open the browser console (F12) and look for any red errors. Ensure your server is running and you are on the correct URL.
-🔧 Extending with a Real AI API
-The app currently uses a mock generator. To connect to a real LLM (OpenAI, OpenRouter, Gemini, etc.):
-
-Replace the mockPost generation inside the /api/stream or /api/generate endpoint with your own API call.
-
-For OpenAI, install the openai package:
-
-bash
-npm install openai
-then use stream: true in the chat completion to get token‑by‑token responses.
-
-For OpenRouter, set baseURL: 'https://openrouter.ai/api/v1' and use model: 'openrouter/free'.
-
-Always keep your API keys in a .env file – never hardcode them.
-
-📁 Project Structure
-text
-.
-├── final-app.js      # Main server file (routing, HTML, endpoints)
-└── README.md         # This file
-🧑‍💻 Credits
-Built as part of an AI Engineering internship at Posts Fusion / Pro Fusion AI.
-All mock content is for educational purposes and demonstrates the core concepts of streaming, prompt engineering, and full‑stack development.
+🔗 LinkedIn  https://www.linkedin.com/in/sawaira-mumtaz-3b77972b1/
 
 📄 License
 This project is licensed under the MIT License – feel free to use, modify, and distribute it.
 
-**Author
-**
-**Sawaira Mumtaz
-**
+🙏 Acknowledgments
+Posts Fusion / Pro Fusion AI – for the internship opportunity
+
+OpenAI & OpenRouter – for their amazing APIs
+
+Render – for free hosting
+
+⭐ Show Your Support
+If you found this project helpful, please give it a ⭐ on GitHub!
+
+Happy building! 🚀
+
